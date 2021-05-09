@@ -2,11 +2,12 @@
   width: 650px;
   padding-left: 15px;
   padding-right: 15px;
-  border: 1px solid #808080;
+
   margin-top: 20px;
 }
 .containerWeather {
-  padding: 20px 16px 25px 16px;
+  padding: 20px 16px 5px 16px;
+  border: 1px solid #808080;
 }
 .citieslist {
   list-style: none;
@@ -72,7 +73,7 @@ h1 {
 }
 .weatherRow {
   padding-top: 30px;
-  padding: 50px;
+  padding: 25px;
   font-family: Arial;
   text-align: center;
 }
@@ -83,4 +84,7 @@ h1 {
 #fahrenheitLink {
   text-decoration: none;
   color: #808080;
+}
+/*.codeByLink {
+  text-align: center;
 }

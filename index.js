@@ -39,11 +39,13 @@ function temperaturefahrenheitLink(response) {
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
   let description = document.querySelector("#description");
+  let weatherIcon = document.querySelector("#weatherIcon");
   document.querySelector("#city").innerHTML = response.data.name;
   fahrenheitTemperature.innerHTML = temperature;
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
   description.innerHTML = response.data.weather[0].main;
+  weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 function search(city) {

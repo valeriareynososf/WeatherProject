@@ -79,12 +79,16 @@ h1 {
 }
 #celsiusLink {
   text-decoration: none;
-  color: #808080;
 }
 #fahrenheitLink {
   text-decoration: none;
-  color: #808080;
 }
-/*.codeByLink {
-  text-align: center;
+
+.degTemp .active {
+  color: #808080;
+  cursor: default;
+  text-decoration: none;
+}
+.degTemp .active:hover {
+  text-decoration: none;
 }

@@ -108,6 +108,27 @@ function getPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(currentLocation);
 }
+
+function displayForecast () {
+let forecastElement = document.querySelector("#forecast");
+let days = ["Thu", "Fri", "Sat", "Sun"];
+let forecastHTML = `<div class="row">`;
+days.forEach(function (day) {
+forecastHTML = forecastHTML + `
+
+  <div class="col-2">
+    Friday
+    <br />
+    <img src="images/partly_cloudy.png"></a>
+    <br />
+    <span class="forecastMax"> 56° </span>
+<span class="forecastMin"> 14° </span>
+  </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
 let fahrenheitTempLink = null;
 
 let searchCity = document.querySelector("#searchCity");
@@ -123,3 +144,4 @@ let fahrenheitLink = document.querySelector("#fahrenheitLink");
 fahrenheitLink.addEventListener("click", temperatureFLink);
 
 search("San Diego");
+displayForecast ();

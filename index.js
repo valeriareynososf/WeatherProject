@@ -153,6 +153,14 @@ function getForecast(coordinates) {
   let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(displayForecast);
 }
+function searchNewYork() {
+    let city = "New York"
+    let apiKey = "3121bb0c5574e7510f338b1183367079";
+    let unit = "imperial";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+
+    axios.get(url).then(temperaturefahrenheitLink);
+  }
 
 let fahrenheitTempLink = null;
 
@@ -167,6 +175,9 @@ celsiusLink.addEventListener("click", temperatureCelsiusLink);
 
 let fahrenheitLink = document.querySelector("#fahrenheitLink");
 fahrenheitLink.addEventListener("click", temperatureFLink);
+
+let newYorkLink = document.querySelector("#new-york");
+newYorkLink.addEventListener("click", searchNewYork);
 
 search("San Diego");
 //displayForecast ();

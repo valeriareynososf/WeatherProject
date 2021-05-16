@@ -21,8 +21,16 @@ let day = days[now.getDay()];
 let currentTime = document.querySelector("#currentTime");
 currentTime.innerHTML = `${day} ${hours}:${minutes}`;
 
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    return days[day];
+  }
 
 function temperaturefahrenheitLink(response) {
+    console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let fahrenheitTemperature = document.querySelector("#temperature");
   let humidity = document.querySelector("#humidity");
@@ -38,6 +46,8 @@ function temperaturefahrenheitLink(response) {
   wind.innerHTML = Math.round(response.data.wind.speed);
   description.innerHTML = response.data.weather[0].main;
   weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
+  getForecast(response.data.coord);
 }
 
 function temperatureCelsiusLink(event) {
@@ -109,26 +119,41 @@ function getPosition(event) {
   navigator.geolocation.getCurrentPosition(currentLocation);
 }
 
-function displayForecast () {
+function displayForecast (response) {
+    console.log(response.data.daily);
+    let forecast = response.data.daily;
 let forecastElement = document.querySelector("#forecast");
-let days = ["Thu", "Fri", "Sat", "Sun"];
-let forecastHTML = `<div class="row">`;
-days.forEach(function (day) {
-forecastHTML = forecastHTML + `
 
+let forecastHTML = `<div class="row">`;
+forecast.forEach(function (forecastDay, index) {
+if (index < 6) {
+  forecastHTML = forecastHTML + `
   <div class="col-2">
-    Friday
+  ${formatDay(forecastDay.dt)}
     <br />
-    <img src="images/partly_cloudy.png"></a>
+    <img
+    src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+    alt=""
+    width="80px"
+  />
     <br />
-    <span class="forecastMax"> 56° </span>
-<span class="forecastMin"> 14° </span>
+    <span class="forecastMax"> ${Math.round(forecastDay.temp.max)}° </span>
+<span class="forecastMin"> ${Math.round(forecastDay.temp.min)}° </span>
   </div>
   `;
+}
   });
   forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
 }
+
+function getForecast(coordinates) {
+    console.log(coordinates);
+    let apiKey = "3121bb0c5574e7510f338b1183367079";
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayForecast);
+}
+
 let fahrenheitTempLink = null;
 
 let searchCity = document.querySelector("#searchCity");
@@ -144,4 +169,4 @@ let fahrenheitLink = document.querySelector("#fahrenheitLink");
 fahrenheitLink.addEventListener("click", temperatureFLink);
 
 search("San Diego");
-displayForecast ();
+//displayForecast ();

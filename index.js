@@ -112,7 +112,7 @@ function currentLocation(position) {
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
   axios.get(url).then(temperaturefahrenheitLink);
 }
-navigator.geolocation.getCurrentPosition(currentLocation);
+
 
 function getPosition(event) {
   event.preventDefault();

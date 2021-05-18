@@ -30,7 +30,6 @@ function formatDay(timestamp) {
   }
 
 function temperaturefahrenheitLink(response) {
-    console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let fahrenheitTemperature = document.querySelector("#temperature");
   let humidity = document.querySelector("#humidity");
@@ -77,32 +76,9 @@ function search(city) {
 
 function showCity(event) {
   event.preventDefault();
-  //let h1 = document.querySelector("#city");
-  //h1.innerHTML = input.value;
-  //let city = input.value;
   let city = document.querySelector("#searchBar").value;
-  //let apiKey = "3121bb0c5574e7510f338b1183367079";
-  //let unit = "imperial";
-  //let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   search(city);
-  //axios.get(url).then(temperaturefahrenheitLink);
 }
-
-/*function showWeather(response) {
-  //console.log(response.data.wind.speed);
-  let searchCurrentCity = response.data.name;
-  let currentCity = document.querySelector("#city");
-  let temperature = Math.round(response.data.main.temp);
-  let getTemperature = document.querySelector("#temperature");
-  let humidity = document.querySelector("#humidity");
-  let wind = document.querySelector("#wind");
-  let description = document.querySelector("#description");
-  getTemperature.innerHTML = temperature;
-  currentCity.innerHTML = searchCurrentCity;
-  humidity.innerHTML = response.data.main.humidity;
-  wind.innerHTML = Math.round(response.data.wind.speed);
-  description.innerHTML = response.data.weather[0].main;
-} */
 
 function currentLocation(position) {
   let lat = position.coords.latitude;
@@ -120,7 +96,6 @@ function getPosition(event) {
 }
 
 function displayForecast (response) {
-    console.log(response.data.daily);
     let forecast = response.data.daily;
 let forecastElement = document.querySelector("#forecast");
 
@@ -148,19 +123,10 @@ forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-    console.log(coordinates);
     let apiKey = "3121bb0c5574e7510f338b1183367079";
   let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(displayForecast);
 }
-function searchNewYork() {
-    let city = "New York"
-    let apiKey = "3121bb0c5574e7510f338b1183367079";
-    let unit = "imperial";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-
-    axios.get(url).then(temperaturefahrenheitLink);
-  }
 
 let fahrenheitTempLink = null;
 
@@ -176,8 +142,4 @@ celsiusLink.addEventListener("click", temperatureCelsiusLink);
 let fahrenheitLink = document.querySelector("#fahrenheitLink");
 fahrenheitLink.addEventListener("click", temperatureFLink);
 
-let newYorkLink = document.querySelector("#new-york");
-newYorkLink.addEventListener("click", searchNewYork);
-
 search("San Diego");
-//displayForecast ();

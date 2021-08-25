@@ -1,12 +1,21 @@
-let now = new Date();
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
+  let now = new Date();
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  if (hours >= 12) {
+    hours = hours - 12;
+  } else if (hours === 0) {
+    hours = 12;
+  }
+
+  let minutes = now.getMinutes();
+  if (minutes < 10 && hours < 12) {
+    minutes = `0${minutes}AM`;
+ } else if (minutes > 11 && hours >= 12) {
+    minutes = `0${minutes}PM`;
+ }
+
 let days = [
   "Sunday",
   "Monday",
@@ -16,10 +25,13 @@ let days = [
   "Friday",
   "Saturday"
 ];
+
 let day = days[now.getDay()];
 
 let currentTime = document.querySelector("#currentTime");
 currentTime.innerHTML = `${day} ${hours}:${minutes}`;
+
+
 
 function formatDay(timestamp) {
     let date = new Date(timestamp * 1000);

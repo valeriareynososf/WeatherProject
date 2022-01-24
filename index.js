@@ -43,18 +43,11 @@ function formatDay(timestamp) {
 
 function temperaturefahrenheitLink(response) {
   let temperature = Math.round(response.data.main.temp);
-  let fahrenheitTemperature = document.querySelector("#temperature");
-  let humidity = document.querySelector("#humidity");
-  let wind = document.querySelector("#wind");
-  //let description = document.querySelector("#description");
-  //let weatherIcon = document.querySelector("#weatherIcon");
-
   fahrenheitTempLink = response.data.main.temp;
-
   document.querySelector("#city").innerHTML = response.data.name;
-  fahrenheitTemperature.innerHTML = temperature;
-  humidity.innerHTML = response.data.main.humidity;
-  wind.innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#temperature").innerHTML = temperature;
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#description").innerHTML = response.data.weather[0].main;
   document.querySelector("#weatherIcon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 

@@ -46,8 +46,8 @@ function temperaturefahrenheitLink(response) {
   let fahrenheitTemperature = document.querySelector("#temperature");
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
-  let description = document.querySelector("#description");
-  let weatherIcon = document.querySelector("#weatherIcon");
+  //let description = document.querySelector("#description");
+  //let weatherIcon = document.querySelector("#weatherIcon");
 
   fahrenheitTempLink = response.data.main.temp;
 
@@ -55,8 +55,8 @@ function temperaturefahrenheitLink(response) {
   fahrenheitTemperature.innerHTML = temperature;
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
-  description.innerHTML = response.data.weather[0].main;
-  weatherIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  document.querySelector("#description").innerHTML = response.data.weather[0].main;
+  document.querySelector("#weatherIcon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
   getForecast(response.data.coord);
 }

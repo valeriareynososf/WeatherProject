@@ -56,19 +56,17 @@ function temperaturefahrenheitLink(response) {
 
 function temperatureCelsiusLink(event) {
   event.preventDefault();
-  let celsiusTemperature = document.querySelector("#temperature");
   fahrenheitLink.classList.remove("active");
   celsiusLink.classList.add("active");
   let temperatureConvert = (fahrenheitTempLink - 32) * 5/9;
-  celsiusTemperature.innerHTML = Math.round(temperatureConvert);
+  document.querySelector("#temperature").innerHTML = Math.round(temperatureConvert);
 }
 
 function temperatureFLink(event) {
 event.preventDefault();
 fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
-let Temperature = document.querySelector("#temperature");
-Temperature.innerHTML = Math.round(fahrenheitTempLink);
+document.querySelector("#temperature").innerHTML = Math.round(fahrenheitTempLink);
 }
 
 function search(city) {
